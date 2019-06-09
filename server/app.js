@@ -1,22 +1,13 @@
 'use strict'
-const express = require('express');
-const port = require('./config').port;
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 
-const app = express();
-app.use(cookieParser());
-app.use(bodyParser.json());
+const app = require('./config/application');
+const config = require('./config');
+const data = require('./data')(config.connectionString);
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-  });
+//console.log(data)
 
-app.listen(port, (err) => {
+app.listen(config.port, (err) => {
     if (err) throw err;
     
-    console.log(`Server is running on port: ${port}`);
+    console.log(`Server is running on port: ${config.port}`);
 });
