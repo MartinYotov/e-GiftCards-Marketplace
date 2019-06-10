@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function(connectionString) {
-    mongoose.connect(connectionString);
+module.exports = function (connectionString) {
+    mongoose.connect(connectionString, { useNewUrlParser: true });
 
     const GiftCard = require('../models/gift-card-model');
     const Store = require('../models/store-model');
@@ -14,5 +14,15 @@ module.exports = function(connectionString) {
     const models = { GiftCard, Store, User };
     const data = {};
 
-    fs.readdirSync('./data').forEach(file => console.log(file));
+    fs.readdirSync('./data')
+        .filter(x => x.includes('-data'))
+        .forEach(file => {
+            const dataModule = require(path.join(__dirname, file))(models);
+            Object.keys(dataModule)
+                .forEach(key => {
+                    data[key] = dataModule[key]
+                });
+        });
+
+    return data;
 }

@@ -4,7 +4,7 @@ const app = require('./config/application');
 const config = require('./config');
 const data = require('./data')(config.connectionString);
 
-//console.log(data)
+console.log(data)
 
 app.listen(config.port, (err) => {
     if (err) throw err;
