@@ -3,6 +3,7 @@
 const app = require('./config/application');
 const config = require('./config');
 const data = require('./data')(config.connectionString);
+const controllers = require('./controllers')({ data });
 
 console.log(data)
 
