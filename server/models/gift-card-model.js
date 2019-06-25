@@ -29,7 +29,7 @@ const GiftCardSchema = new Schema({
     },
     expirationDate: {
         type: Date,
-        required: true,
+        // required: true,  // TODO: uncomment
         min: Date.now
     },
     user: {

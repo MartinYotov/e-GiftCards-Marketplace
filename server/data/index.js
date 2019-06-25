@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = function (connectionString) {
+    mongoose.set('useFindAndModify', false);
     mongoose.connect(connectionString, { useNewUrlParser: true });
 
     const GiftCard = require('../models/gift-card-model');
@@ -14,7 +15,7 @@ module.exports = function (connectionString) {
     const models = { GiftCard, Store, User };
     const data = {};
 
-    fs.readdirSync('./data')
+    fs.readdirSync(__dirname)
         .filter(x => x.includes('-data'))
         .forEach(file => {
             const dataModule = require(path.join(__dirname, file))(models);

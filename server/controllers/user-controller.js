@@ -2,8 +2,17 @@
 
 module.exports = ({ data }) => {
     return {
-        userControllerMethod() {
-
+        getUser(req, res) {
+            const username = req.params.username;
+            data.getUserByUsername(username)
+                .then(user => {
+                    //if (user)
+                    res.status(200).json(user);
+                }).
+                catch(err => {
+                    console.error(err);
+                    res.status(500);
+                });
         }
     }
 }
