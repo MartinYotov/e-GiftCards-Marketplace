@@ -6,5 +6,5 @@ module.exports = ({ app, controllers }) => {
 
     app.get(storeRoute, controller.getAllStores);
     app.post(storeRoute, controller.createStore);
-    app.get(storeRoute + '/:id', controller.getAllStores);
+    app.get(storeRoute + '/:id', controller.getStoreById);
 };

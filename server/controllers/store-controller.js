@@ -24,7 +24,7 @@ module.exports = ({ data }) => {
         },
         createStore(req, res) {
             const store = req.body;
-
+            console.log(store);
             data.createStore(store)
                 .then(store => {
                     return res.status(201)

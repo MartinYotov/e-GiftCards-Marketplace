@@ -1,0 +1,43 @@
+.gift-card-row {
+    margin-top: 30px;
+}
+
+.gift-card-row > div {
+    display: inline-block;
+    margin-right: 80px;
+}
+
+.header-row > div {
+    display: inline-block;
+}
+
+.header-row {
+    text-align: left;
+    padding-left: 250px;
+}
+
+.header-store {
+    margin-right: 90px;
+}
+
+.header-value {
+    margin-right: 55px;
+}
+
+.header-off {
+    margin-right: 55px;
+}
+
+
+.gift-card-row img {
+    width: 115px;
+}
+
+.no-cards {
+    margin-top: 85px;
+    font-size: 18px;
+}
+
+.no-cards span {
+    font-weight: bold;
+}

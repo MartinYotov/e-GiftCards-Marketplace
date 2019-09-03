@@ -6,7 +6,7 @@ module.exports = function (models) {
     return {
         getAllStores() {
             return new Promise((resolve, reject) => {
-                Store.find({}, (err, stores) => {
+                Store.find({}, null, {sort: {name: 1}}, (err, stores) => {
                     if (err) {
                         return reject(err);
                     }
@@ -40,8 +40,6 @@ module.exports = function (models) {
             });
         },
         addGiftCardToStore(giftCard) {
-            console.log(111)
-            console.log(giftCard);
             const giftCardToAdd = {
                 _id: giftCard._id,
                 cardValue: giftCard.cardValue,
