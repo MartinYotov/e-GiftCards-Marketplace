@@ -1,0 +1,37 @@
+.details {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.details img {
+    width: 250px;
+}
+
+p.email-delivery::after, .label::after {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  margin-left: 8px;
+  content: '✓';
+  font-weight: 600;
+  background-color: #1cb71c;
+  color: white;
+  border-radius: 50%;    
+  text-align: center;
+}
+
+#buyButton {
+    width: 250px;
+}
+
+.label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #212528;
+}
+
+
+.sublabel {
+    font-size: .85rem;
+    color: #616e71;
+}

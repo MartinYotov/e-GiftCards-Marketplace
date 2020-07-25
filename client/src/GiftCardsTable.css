@@ -1,0 +1,22 @@
+
+#title {
+    font-size: 26px;
+    margin-top: 20px;
+}
+
+table {
+    table-layout: fixed;
+    width: 800px;
+}
+
+span[class*="PrivateValueLabel-label-"] {
+    margin-bottom: 5px !important;
+}
+
+.MuiSlider-root {
+    width: 70% !important;
+}
+
+.gift-card-row img {
+    cursor: pointer;
+}

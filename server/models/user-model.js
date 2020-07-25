@@ -2,8 +2,9 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const constants = require('../utilities/constants.js');
 
-const UserSchema = new Schema({
+const UserSchema = new Schema({    
     username: {
         type: String,
         required: true,
@@ -12,10 +13,24 @@ const UserSchema = new Schema({
         minlength: 5,
         maxlength: 25
     },
-    image: {
+    firstName: {
         type: String,
-        default: ''
+        match: constants.NAME_REGEX,
+        required: true,
+        minlength: constants.MIN_NAME_LENGTH,
+        maxlength: constants.MAX_NAME_LENGTH
     },
+    lastName: {
+        type: String,
+        match: constants.NAME_REGEX,
+        required: true,
+        minlength: constants.MIN_NAME_LENGTH,
+        maxlength: constants.MAX_NAME_LENGTH
+    },
+    passHash: { type: String, required: true },
+    salt: { type: String, required: true },
+    email: { type: String, match: constants.EMAIL_REGEX },    
+    roles: [{ type: String, default: 'normal' }],
     giftCards: [{
         store: {
             type: String,
@@ -43,9 +58,6 @@ const UserSchema = new Schema({
             type: Number,
             required: true
         }
-    }],
-    purchases: [{
-
     }]
 });
 

@@ -11,6 +11,15 @@ module.exports = ({ data }) => {
                     console.log(err);
                 });
         },
+        getStoreNames(req, res) {
+            data.getStoreNames()
+                .then(stores => {
+                    res.json(stores);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        },
         getStoreById(req, res) {
             const id = req.params.id;
 
@@ -20,7 +29,7 @@ module.exports = ({ data }) => {
                 })
                 .catch(err => {
                     console.log(err);
-                })
+                });
         },
         createStore(req, res) {
             const store = req.body;

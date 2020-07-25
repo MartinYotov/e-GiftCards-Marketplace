@@ -1,0 +1,22 @@
+.MuiInput-root {
+    width: 50%;
+}
+
+.add-card-form-wrapper {
+    width: 50%;
+    margin: auto;
+}
+
+.discount {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.form-add-card label {
+    font-weight: 600;
+}
+
+div.buy-price {
+    color: green;
+    
+}

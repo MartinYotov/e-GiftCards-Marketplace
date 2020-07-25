@@ -6,7 +6,9 @@ module.exports = function(models) {
     return {
         getAllGiftCards() {
             return new Promise((resolve, reject) => {
-                GiftCard.find({}, (err, giftCards) => {
+                GiftCard.find({})
+                .populate('store')
+                .exec((err, giftCards) => {
                     if (err) {
                         return reject(err);
                     }
@@ -17,7 +19,9 @@ module.exports = function(models) {
         },
         getGiftCardById(id){
             return new Promise((resolve, reject) => {
-                GiftCard.findById(id, (err, giftCard) => {
+                GiftCard.findById(id)
+                .populate('store', 'name image')
+                .exec((err, giftCard) => {
                     if (err) {
                         return reject(err);
                     }

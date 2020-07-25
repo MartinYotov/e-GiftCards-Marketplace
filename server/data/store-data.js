@@ -15,10 +15,25 @@ module.exports = function (models) {
                 })
             });
         },
+        getStoreNames() {
+            return new Promise((resolve, reject) => {
+                Store.find({}, 'name', {sort: {name: 1}}, (err, stores) => {
+                    if (err) {
+                        console.log(123);
+                        console.log(err);
+                        return reject(err);
+                    }
+
+                    return resolve(stores);
+                })
+            });
+        },        
         getStoreById(id) {
             return new Promise((resolve, reject) => {
                 Store.findById(id, (err, store) => {
                     if (err) {
+                        console.log(456);
+                        console.log(err);
                         return reject(err);
                     }
 
@@ -47,12 +62,15 @@ module.exports = function (models) {
                 discountPercentage: giftCard.discountPercentage
 
             }
+            console.log('addGiftCardToStore');
+            console.log(giftCard);
             return new Promise((resolve, reject) => {
-                Store.findOneAndUpdate(
-                    { name: giftCard.store },
+                Store.findByIdAndUpdate(
+                    giftCard.store,
                     { $push: { 'giftCards': giftCardToAdd } },
                     (err) => {
                         if (err) {
+                            console.log('Failed to add gc to store');
                             return reject(err);
                         }
                         return resolve({ giftCardId: giftCardToAdd._id });

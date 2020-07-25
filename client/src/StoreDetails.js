@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import GiftCardsTable from './GiftCardsTable.js';
+
 import './StoreDetails.css';
 
 class StoreDetails extends Component {
@@ -34,29 +36,15 @@ class StoreDetails extends Component {
                         <p id="title">{this.state.store.name} Gift Cards</p>
 
                         {this.state.store.giftCards.length > 0 ?
-                            <div>
-                                <div className="header-row">
-                                    <div class="header-store">Store</div>
-                                    <div class="header-value">Card value</div>
-                                    <div class="header-off">% off</div>
-                                    <div class="header-price">Price to buy</div>
-                                </div>
-                                <div id="gift-cards-container">
-                                    {this.state.store.giftCards.map(giftCard => (
-                                        <div key={giftCard._id} className="gift-card-row">
-                                            <div>
-                                                <img alt={this.state.store.name} src={this.state.store.image} />
-                                            </div>
-                                            <div>${giftCard.cardValue}</div>
-                                            <div>{giftCard.discountPercentage}%</div>
-                                            <div>${giftCard.price}</div>
-                                            <div><button type="button" class="btn btn-primary">Buy Now</button></div>
-                                        </div>)
-                                    )}
-                                </div>
-                            </div>
+
+                            <GiftCardsTable 
+                                fixedStore={true}
+                                filteredGiftCards={this.state.store.giftCards}
+                                giftCardsByStore={this.state.store.giftCards}
+                                selectedStore={{ name: this.state.store.name, image: this.state.store.image}}>
+                            </GiftCardsTable>         
                             :
-                            <div class="no-cards">No available gift cards for <span>{this.state.store.name}</span> at the moment. Please, check later.</div>
+                            <div className="no-cards">No available gift cards for <span>{this.state.store.name}</span> at the moment. Please, check later.</div>
                         }
                     </div>
                     :

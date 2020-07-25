@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, Redirect} from "react-router-dom";
+import './Navbar.css';
+
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Navbar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isAuthenticated: false
+            redirect: false
         };
+
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount(){
@@ -15,6 +21,11 @@ class Navbar extends Component {
         this.updateActiveLi(document.getElementById(path));
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.isLoggedIn !== this.props.isLoggedIn) {
+            this.updateActiveLi(document.getElementById('gift-cards'));
+        }
+    }
     updateActiveLi(param) { 
 
         const active = document.getElementsByClassName('active')[0];
@@ -39,7 +50,31 @@ class Navbar extends Component {
         }
     }
 
+    logout() {
+        localStorage.removeItem('egc-username');
+        localStorage.removeItem('token');
+        toast.success('Logged out successfully');
+        
+        setTimeout(() => {
+            this.props.logOutHandler();
+            this.setState({
+                redirect: true
+            });
+        }, 1500);
+    }
+
     render() {
+        const {redirect} = this.state;
+        if (redirect) {
+            this.setState({
+                redirect: false
+            });
+            
+            return (<Redirect to={{pathname: '/'}}/>);
+        }
+
+        let isAuthenticated = this.props.isLoggedIn;
+
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
@@ -58,11 +93,18 @@ class Navbar extends Component {
                         </li>
                     </ul>
 
-                    {this.state.isAuthenticated ?
+                    {isAuthenticated ?
                         <ul className="navbar-nav ml-auto">
+                            <li id="user" className="nav-item">
+                                <Link to="/add-card" className="nav-link">Sell card</Link>
+                            </li>
                             <li id="user" className="nav-item">
                                 <Link to="/user" className="nav-link">Profile</Link>
                             </li>
+                            <li className="nav-item">
+                                <a onClick={this.logout} className="nav-link lgt-btn">Log out</a>
+                            </li>
+                            <ToastContainer autoClose={3000}/>
                         </ul>
                         :
                         <ul className="navbar-nav ml-auto">

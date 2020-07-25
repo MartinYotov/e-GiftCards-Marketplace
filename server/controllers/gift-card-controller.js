@@ -10,7 +10,6 @@ module.exports = ({ data }) => {
                 })
                 .catch(err => {
                     console.log(err);
-                 //   res.status()
                 });
         },
         getGiftCardById(req, res) {
@@ -20,7 +19,7 @@ module.exports = ({ data }) => {
                 .then(giftCard => {
 
                     if (!giftCard) {
-                        console.log('no gift card found')
+                        console.log('no gift card found');
                     }
 
                     res.json(giftCard);
@@ -31,8 +30,7 @@ module.exports = ({ data }) => {
         },
         createGiftCard(req, res) {
             const body = req.body;
-            console.log(body)
-           // const user = req.user.username
+            const user = req.user.username;
 
             data.createGiftCard({
                 store: body.store,
@@ -41,14 +39,12 @@ module.exports = ({ data }) => {
                 price: body.price,
                 discountPercentage: body.discountPercentage,
                 // expirationDate: data.expirationDate,
-                user: 'testuser'
+                user: user
             })
             .then(giftCard => {
                 return data.addGiftCardToStore(giftCard);
             })
             .then(({ giftCardId }) => {
-                console.log(123)
-                console.log(giftCardId);
                 return res.status(201).json({
                     message: 'Gift Card created',
                     giftCard: giftCardId
@@ -60,6 +56,29 @@ module.exports = ({ data }) => {
                     message: JSON.stringify(err)
                 });
             });
-        }
+        },
+        getBestDeals(req, res) {
+            data.getAllGiftCards()
+                .then(giftCards => {
+                    const bestDeals = [];
+                    giftCards.forEach(card => {
+                        let index = bestDeals.findIndex(deal => {
+                            return deal.store === card.store;
+                        });
+                        if (index !== -1) {
+                            if (bestDeals[index].discountPercentage < card.discountPercentage) {
+                                bestDeals[index] = card;
+                            }
+                        } else {
+                            bestDeals.push(card);
+                        }
+                    })
+                    res.status(200).json(bestDeals);
+                })
+                .catch(err => {
+                    console.log(err);
+                 //   res.status()
+                });
+        },
     }
 }

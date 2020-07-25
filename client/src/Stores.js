@@ -31,8 +31,10 @@ class Stores extends Component {
 
     filter(event) {
         const filtered = this.state.stores
-            .filter(store => store.name.toLowerCase()
-                                   .includes(event.target.value));
+            .filter(store => store.name
+                .toLowerCase()
+                .includes(event.target.value)
+            );
         this.setState({
             filteredStores: filtered
         });
@@ -45,7 +47,7 @@ class Stores extends Component {
 
                 <div className="row justify-content-center">
                     <div className="input-group col-sm-4 " >
-                        <input className="form-control" placeholder="Search for a store"  onKeyUp={this.filter}/>
+                        <input className="form-control" placeholder="Search for a store" onKeyUp={this.filter}/>
                         <span className="input-group-btn">
                             <button className="btn btn-info">Search</button>
                         </span>
@@ -56,7 +58,7 @@ class Stores extends Component {
                     {this.state.filteredStores.map(store => (
                         <div key={store.name} className="store">
                             <Link to={{ pathname: `/store/${store._id}` }}>
-                                <div className="store-image" style={{ backgroundImage: `url(${store.image})` }} />
+                                <div className="store-image" style={{ backgroundImage: `url(${"./images/" + store.image})` }} />
                             </Link>
                             {store.name}
                         </div>)

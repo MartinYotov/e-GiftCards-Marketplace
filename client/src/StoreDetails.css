@@ -1,36 +1,20 @@
-.gift-card-row {
-    margin-top: 30px;
+table {
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
 }
 
-.gift-card-row > div {
-    display: inline-block;
-    margin-right: 80px;
+table thead span{
+    font-weight: 600;
+    display: block;
+    margin-bottom: 20px;
 }
-
-.header-row > div {
-    display: inline-block;
-}
-
-.header-row {
-    text-align: left;
-    padding-left: 250px;
-}
-
-.header-store {
-    margin-right: 90px;
-}
-
-.header-value {
-    margin-right: 55px;
-}
-
-.header-off {
-    margin-right: 55px;
-}
-
 
 .gift-card-row img {
-    width: 115px;
+    width: 135px;
+    margin-bottom: 10px;
 }
 
 .no-cards {

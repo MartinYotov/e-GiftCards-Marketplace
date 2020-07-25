@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 
 const GiftCardSchema = new Schema({
     store: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Store',
         required: true
     },
     code: {
