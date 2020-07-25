@@ -63,7 +63,7 @@ class Login extends Component {
         if (redirect)
             return (
                 <Redirect to={{
-                    pathname: from ? from : '/'
+                    pathname: from ? from : '/gift-cards'
                 }}/>);
 
 

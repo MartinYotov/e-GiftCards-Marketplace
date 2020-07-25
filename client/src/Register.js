@@ -66,7 +66,7 @@ class Register extends Component {
         const {redirect} = this.state;
 
         if (redirect) {
-            return (<Redirect to={{pathname: '/'}}/>);
+            return (<Redirect to={{pathname: '/gift-cards'}}/>);
         }
 
         return (

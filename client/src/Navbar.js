@@ -78,7 +78,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-                <Link to="/" className="navbar-brand" onClick={event => this.updateActiveLi(document.getElementById('gift-cards'))}>e-GiftCards</Link>
+                <Link to="/" className="navbar-brand" onClick={event => this.updateActiveLi()}>e-GiftCards</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -86,7 +86,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav" onClick={this.updateActiveLi}>
                     <ul className="navbar-nav">
                         <li id="gift-cards" className="nav-item active">
-                            <Link to="/" className="nav-link">Gift Cards</Link>
+                            <Link to="/gift-cards" className="nav-link">Gift Cards</Link>
                         </li>
                         <li id="stores" className="nav-item">
                             <Link to="/stores" className="nav-link">Stores</Link>

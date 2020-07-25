@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PrivateRoute from './PrivateRoute';
 import './App.css';
 import Navbar from './Navbar';
+import Home from './Home';
 import GiftCards from './GiftCards';
 import GiftCardDetails from './GiftCardDetails';
 import Stores from './Stores';
@@ -56,7 +57,8 @@ class App extends Component {
           <div className="container">
 
             <Switch>
-              <Route path="/" exact component={GiftCards} />
+              <Route path="/" exact component={Home} />
+              <Route path="/gift-cards" component={GiftCards} />
               <Route path="/cards/:id" component={GiftCardDetails} />
               <Route path="/stores" component={Stores} />
               <Route path="/store/:id" component={StoreDetails} />
